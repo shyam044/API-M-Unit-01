@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API&M Unit-01 - Questions</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f9f9f9;
+            color: #333;
+            font-size: 1rem;
+            line-height: 1.55;
+        }
+
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 0.9rem 0.5rem;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 1.8rem auto;
+            padding: 1.1rem;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.06);
+            page-break-after: always;
+            border-radius: 6px;
+        }
+
+        h2 {
+            color: #0077cc;
+            margin: 0 0 0.9rem;
+            font-size: 1.55rem;
+            font-weight: 600;
+        }
+
+        h3 {
+            color: #444;
+            margin: 1.1rem 0 0.55rem;
+            font-size: 1.28rem;
+            font-weight: 600;
+        }
+
+        p {
+            margin: 0.55rem 0;
+        }
+
+        ul, ol {
+            margin: 0.55rem 0;
+            padding-left: 1.3rem;
+        }
+
+        li {
+            margin-bottom: 0.35rem;
+        }
+
+        li > ul, li > ol {
+            margin: 0.35rem 0;
+            padding-left: 1.2rem;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 11px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.88rem;
+            line-height: 1.4;
+            margin: 0.7rem 0;
+            border: 1px solid #eee;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.25rem;
+                padding: 0.75rem 0.5rem;
+            }
+
+            .container {
+                margin: 1.2rem auto;
+                padding: 0.95rem;
+                border-radius: 5px;
+            }
+
+            h2 {
+                font-size: 1.35rem;
+                margin-bottom: 0.8rem;
+            }
+
+            h3 {
+                font-size: 1.15rem;
+                margin: 0.95rem 0 0.45rem;
+            }
+
+            ul, ol {
+                padding-left: 1rem;
+            }
+
+            li > ul, li > ol {
+                padding-left: 1rem;
+            }
+
+            pre {
+                font-size: 0.82rem;
+                padding: 9px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 1rem auto;
+                padding: 0.85rem;
+            }
+
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            ul, ol {
+                padding-left: 0.9rem;
+            }
+
+            li > ul, li > ol {
+                padding-left: 0.9rem;
+            }
+        }
+
+        /* Print */
+        @media print {
+            .container {
+                page-break-after: always;
+                box-shadow: none;
+                margin: 0;
+                padding: 1rem;
+                border-radius: 0;
+            }
+
+            header {
+                background: #0077cc !important;
+                -webkit-print-color-adjust: exact;
+                color-adjust: exact;
+            }
+        }
+
+        /* Roman Numbering - TIGHT & PERFECT */
+        ol.roman {
+            counter-reset: item;
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0.55rem 0;
+        }
+
+        ol.roman > li {
+            counter-increment: item;
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.35rem;
+        }
+
+        ol.roman > li::before {
+            content: counter(item, lower-roman) ") ";
+            position: absolute;
+            left: 0;
+            color: #0077cc;
+            font-weight: bold;
+            width: 1.4rem;
+            text-align: left;
+            font-size: 0.94em;
+            top: 0;
+        }
+
+        ol.roman ol {
+            counter-reset: subitem;
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 0.3rem;
+        }
+
+        ol.roman ol > li {
+            counter-increment: subitem;
+            position: relative;
+            padding-left: 1.7rem;
+            margin-bottom: 0.25rem;
+        }
+
+        ol.roman ol > li::before {
+            content: "(" counter(subitem, lower-alpha) ") ";
+            position: absolute;
+            left: 0;
+            color: #0077cc;
+            font-weight: bold;
+            width: 1.5rem;
+            font-size: 0.92em;
+        }
+
+        ol.roman li > ul {
+            margin: 0.35rem 0 0.5rem 1.4rem;
+            padding-left: 0;
+        }
+
+        @media (max-width: 768px) {
+            ol.roman > li {
+                padding-left: 1.5rem;
+            }
+            ol.roman > li::before {
+                width: 1.3rem;
+            }
+            ol.roman ol > li {
+                padding-left: 1.6rem;
+            }
+            ol.roman ol > li::before {
+                width: 1.4rem;
+            }
+            ol.roman li > ul {
+                margin-left: 1rem;
+            }
+        }
+
+        /* Indentation under h3 */
+        .indent-block {
+            margin-left: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .indent-block {
+                margin-left: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .indent-block {
+                margin-left: 0.8rem;
+            }
+        }
+
+        /* Image Lightbox */
+        img {
+            display: block;
+            max-width: 58%;
+            height: auto;
+            max-height: 270px;
+            object-fit: contain;
+            margin: 1rem auto;
+            border-radius: 6px;
+            cursor: zoom-in;
+            transition: transform 0.2s ease;
+            border: 1px solid #ddd;
+        }
+
+        img:hover {
+            transform: scale(1.04);
+        }
+
+        #lightbox {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+            backdrop-filter: blur(6px);
+        }
+
+        #lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #lightbox img {
+            max-width: 88%;
+            max-height: 88%;
+            border-radius: 10px;
+            box-shadow: 0 0 25px rgba(255,255,255,0.3);
+            transform: scale(0.85);
+            transition: transform 0.3s ease;
+            cursor: zoom-out;
+        }
+
+        #lightbox.active img {
+            transform: scale(1);
+        }
+
+        /* Tip */
+        #image-tip {
+            position: fixed;
+            top: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 119, 204, 0.96);
+            color: #fff;
+            padding: 0.7rem 1.1rem;
+            border-radius: 6px;
+            font-size: 0.92rem;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease;
+            white-space: nowrap;
+        }
+
+        #image-tip.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        @media (max-width: 480px) {
+            #image-tip {
+                font-size: 0.85rem;
+                padding: 0.6rem 1rem;
+            }
+        }
+    </style>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8311353174841359"
+     crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <header>API&M Unit-01</header>
+    <div id="image-tip">Click on any image for better view!</div>
+
+    <div class="container">
+        <h2>1) Advantages of Spring</h2>
+        <ul>
+            <li>Spring is a tool used for developing Java applications quickly</li>
+        </ul>
+        <ol class="roman">
+            <li>Spring is everywhere
+                <ul>
+                    <li>Spring is everywhere and is trusted globally</li>
+                    <li>Popular companies like Amazon, Google, and Microsoft use Spring</li>
+                    <li>It supports everything from simple applications to complex applications</li>
+                </ul>
+            </li>
+            <li>Spring is Flexible
+                <ul>
+                    <li>Spring provides flexible libraries that support any type of application</li>
+                    <li>It includes
+                        <ul>
+                            <li>Inversion of Control (IoC)</li>
+                            <li>Dependency Injection (DI)</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li>Spring is Productive
+                <ul>
+                    <li>Spring adds powerful tools that increase productivity</li>
+                    <li>Spring helps to build microservices quickly</li>
+                </ul>
+            </li>
+            <li>Spring is Fast
+                <ul>
+                    <li>Spring allows applications to start, run and shut down quickly</li>
+                </ul>
+            </li>
+            <li>Spring is secure
+                <ul>
+                    <li>Spring keeps the data safe from security vulnerabilities</li>
+                    <li>Modern applications are safer with Spring Security</li>
+                </ul>
+            </li>
+            <li>Spring is supportive
+                <ul>
+                    <li>Spring supports developers by providing
+                        <ul>
+                            <li>training</li>
+                            <li>certificates, etc...</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <header>API&M Unit-01</header>
+
+    <div class="container">
+        <h2>2) Spring Framework</h2>
+        <ul>
+            <img src="spring-overview.png"/>
+            <li>Spring Framework is a lightweight and open-source Framework</li>
+            <li>It is used for developing Java Applications quickly</li>
+        </ul>
+        <h3>Architecture</h3>
+        <div class="indent-block">
+            <ol class="roman">
+                <li>Data Access/Integration
+                    <ul>
+                        <li>Spring allows developers to easily access the data from databases</li>
+                        <li>It includes modules like
+                            <ul>
+                                <li>JDBC</li>
+                                <li>ORM</li>
+                                <li>OXM</li>
+                                <li>JMS</li>
+                                <li>transaction management</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Web
+                    <ul>
+                        <li>It supports web-oriented features like Spring-MVC, RESTful services.</li>
+                        <li>It includes modules like
+                            <ul>
+                                <li>web</li>
+                                <li>servlet</li>
+                                <li>portlet</li>
+                                <li>struts</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>AOP and Instrumentation
+                    <ul>
+                        <li>AOP stands for Aspect-Oriented Programming</li>
+                        <li>Spring separates logging and security from the main program</li>
+                    </ul>
+                </li>
+                <li>Core Container
+                    <ul>
+                        <li>It mainly focuses on two principles
+                            <ol class="roman">
+                                <li>Inversion of Control (IoC)</li>
+                                <li>Dependency Injection (DI)</li>
+                            </ol>
+                        </li>
+                        <li>It includes modules like
+                            <ul>
+                                <li>Beans</li>
+                                <li>Core</li>
+                                <li>Context</li>
+                                <li>Expression Language</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>Test
+                    <ul>
+                        <li>Spring tests the applications by using tools like
+                            <ul>
+                                <li>JUnit</li>
+                                <li>TestNG</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+
+    <header>API&M Unit-01</header>
+
+    <div class="container">
+        <h2>3) Configuration in IoC Container</h2>
+        <ul>
+            <li>IoC stands for Inversion of Control</li>
+            <li>In Java-Based Configuration, Spring uses @configuration and @Beans annotations to define and manage beans in the IoC Container</li>
+        </ul>
+        <ol class="roman">
+            <li>@configuration
+                <ul>
+                    <li>It is used on classes that contain bean definitions</li>
+                </ul>
+            </li>
+            <li>@Bean
+                <ul>
+                    <li>It is used on methods that define the bean</li>
+                </ul>
+            </li>
+        </ol>
+        <p><strong>Syntax</strong></p>
+        <pre>
+@Configuration
+public class A {
+  @Bean
+  public B fun() {
+     ...
+  }
+}
+        </pre>
+
+        <h3>Inter Bean Dependencies</h3>
+        <div class="indent-block">
+            <ul>
+                <li>@Bean depends on another @Bean within the same @configuration class is called as Inter Bean Dependencies</li>
+            </ul>
+            <p><strong>Syntax</strong></p>
+            <pre>
+@Configuration
+public class A {
+  @Bean
+  public B fun1() {
+     ...
+  }
+  @Bean
+  public C fun2() {
+     ...
+  }
+}
+            </pre>
+        </div>
+
+        <h3>Program</h3>
+        <div class="indent-block">
+            <p><strong>A.java</strong></p>
+            <pre>
+@Component
+public class A {
+  public void display() {
+    System.out.println("Hello World");
+  }
+}
+            </pre>
+            <p><strong>B.java</strong></p>
+            <pre>
+@Configuration
+public class B{
+  @Bean
+  public A fun1(){
+    return new A();
+  }
+}
+            </pre>
+            <p><strong>Main.java</strong></p>
+            <pre>
+public class Main {
+  public static void main(String[] args){
+    ApplicationContext context = new AnnotationConfigApplicationContext(B.class);
+    A obj = context.getBean(A.class);
+    obj.display();
+  }
+}
+            </pre>
+            <p><strong>Output</strong></p>
+            <pre>
+Hello World
+            </pre>
+        </div>
+    </div>
+
+    <header>API&M Unit-01</header>
+
+    <div class="container">
+        <h2>4) Dependency Injection</h2>
+        <ul>
+            <li>DI stands for Dependency Injection</li>
+            <li>In Dependency Injection, it injects one object into another object</li>
+            <li>Types of Dependency Injection</li>
+        </ul>
+        <ol class="roman">
+            <li>Constructor Injection
+                <ul>
+                    <li>Constructor Injection is a type of Dependency Injection</li>
+                    <li>Constructor Injection is a technique where dependencies are injected into the class by using a constructor</li>
+                    <li>It calls the constructor with required dependencies</li>
+                </ul>
+                <p><strong>Syntax</strong></p>
+                <pre>
+@Component
+public class B {
+  @Autowired
+  public B(public A a) {
+    this.a = a;
+  }
+}
+                </pre>
+                <h3>Program</h3>
+                <div class="indent-block">
+                    <p><strong>A.java</strong></p>
+                    <pre>
+@Component
+public class A {
+  public void display() {
+    System.out.println("Hello World");
+  }
+}
+                    </pre>
+                    <p><strong>B.java</strong></p>
+                    <pre>
+@Component
+public class B{
+  @Autowired
+  public B(public A a){
+    this.a = a;
+  }
+}
+                    </pre>
+                    <p><strong>Main.java</strong></p>
+                    <pre>
+public class Main {
+  public static void main(String[] args){
+    ApplicationContext context = new AnnotationConfigApplicationContext(B.class);
+    A obj = context.getBean(A.class);
+    obj.display();
+  }
+}
+                    </pre>
+                    <p><strong>Output</strong></p>
+                    <pre>
+Hello World
+                    </pre>
+                </div>
+            </li>
+            <li>Setter Injection
+                <ul>
+                    <li>Setter Injection is a type of Dependency Injection</li>
+                    <li>Setter Injection is a technique where dependencies are injected into the beans by using setter methods</li>
+                    <li>It creates the bean and defines the setter methods</li>
+                </ul>
+                <p><strong>Syntax</strong></p>
+                <pre>
+@Component
+public class B {
+  @Autowired
+  public void fun(public A a) {
+    this.a = a;
+  }
+}
+                </pre>
+                <h3>Program</h3>
+                <div class="indent-block">
+                    <p><strong>A.java</strong></p>
+                    <pre>
+@Component
+public class A {
+  public void display() {
+    System.out.println("Hello World");
+  }
+}
+                    </pre>
+                    <p><strong>B.java</strong></p>
+                    <pre>
+@Component
+public class B{
+  @Autowired
+  public void fun(public A a){
+    this.a = a;
+  }
+}
+                    </pre>
+                    <p><strong>Main.java</strong></p>
+                    <pre>
+public class Main {
+  public static void main(String[] args){
+    ApplicationContext context = new AnnotationConfigApplicationContext(B.class);
+    A obj = context.getBean(A.class);
+    obj.display();
+  }
+}
+                    </pre>
+                    <p><strong>Output</strong></p>
+                    <pre>
+Hello World
+                    </pre>
+                </div>
+            </li>
+        </ol>
+    </div>
+
+    <header>API&M Unit-01</header>
+
+    <div class="container">
+        <h2>5) Auto Scanning</h2>
+        <ul>
+            <li>The process of automatically finding and managing Spring components is called as Auto Scanning</li>
+            <li>Spring components are
+                <ul>
+                    <li>beans</li>
+                    <li>controllers</li>
+                    <li>repositories</li>
+                    <li>services</li>
+                </ul>
+            </li>
+            <li>Annotations are
+                <ul>
+                    <li>@Component</li>
+                    <li>@Controller</li>
+                    <li>@Repository</li>
+                    <li>@Service</li>
+                </ul>
+            </li>
+        </ul>
+        <p><strong>Syntax</strong></p>
+        <pre>
+@Component
+public class A {
+   ...
+}
+@Controller
+public class B {
+   @Autowired
+   ...
+}
+@Repository
+public class C {
+   ...
+}
+@Service
+public class D {
+   ...
+}
+        </pre>
+    </div>
+
+    <div id="lightbox">
+        <img id="lightbox-img" src="" alt="Enlarged view">
+    </div>
+
+    <script>
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+
+        document.querySelectorAll("img").forEach(img => {
+            img.addEventListener("click", () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add("active");
+            });
+        });
+
+        lightbox.addEventListener("click", () => {
+            lightbox.classList.remove("active");
+        });
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const tip = document.getElementById("image-tip");
+            tip.classList.add("show");
+            setTimeout(() => tip.classList.remove("show"), 5000);
+        });
+    </script>
+
+</body>
+
+</html>
